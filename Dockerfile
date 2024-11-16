@@ -1,17 +1,14 @@
-# Use the official .NET Core SDK image as a parent image
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
-WORKDIR /app
+# Use the official image as a parent image
+FROM mcr.microsoft.com/dotnet/framework/aspnet:4.7.2-windowsservercore-ltsc2019
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+# Set the working directory
+WORKDIR /inetpub/wwwroot
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
+# Copy the current directory contents into the container at /inetpub/wwwroot
+COPY . .
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "dulich.dll"]
+# Expose port 80
+EXPOSE 80
+
+# Start the application
+ENTRYPOINT ["C:\\ServiceMonitor.exe", "w3svc"]
