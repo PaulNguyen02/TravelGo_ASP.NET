@@ -1,0 +1,88 @@
+﻿@model IEnumerable<dulich.Models.ChuyenDuLich>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0"> Quản lý Chuyến du lịch</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Quản lý Chuyến du lịch
+                    </li>
+                </ol>
+            </div>
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content Header--> <!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row mb-3">
+            <div class="col-12">
+                <a href="@Url.Action("Create", "ChuyenDuLich")" class="btn btn-primary">Thêm Chuyến Du Lịch</a>
+            </div>
+        </div> <!--end::Row-->
+        <!--begin::Row-->
+        <div class="row">
+            <!--begin::Col-->
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên Chuyến</th>
+                            <th>Ngày Khởi Hành</th>
+                            <th>Ngày Kết Thúc</th>
+                            <th>Địa Điểm Du Lịch</th>
+                            <th>Công Ty Du Lịch</th>
+                            <th>Giá</th>
+                            <th>Hình Ảnh</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var chuyen in Model)
+                        {
+                            <tr>
+                                <td>@chuyen.Id</td>
+                                <td>@chuyen.TenChuyen</td>
+                                <td>@chuyen.NgayKhoiHanh.ToString("dd/MM/yyyy")</td>
+                                <td>@chuyen.NgayKetThuc.ToString("dd/MM/yyyy")</td>
+                                <td>@chuyen.DiaDiemDuLich.Ten</td>
+                                <td>@chuyen.CongTyDuLich.Ten</td>
+                                <td>@string.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", chuyen.Gia)</td>
+
+                                <td>
+                                    @if (!string.IsNullOrEmpty(chuyen.HinhAnh))
+                                    {
+                                        <img src="@chuyen.HinhAnh" alt="Hình ảnh" style="width: 100px; height: auto;" />
+                                    }
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "ChuyenDuLich", new { id = chuyen.Id })" class="btn btn-warning">Sửa</a>
+                                    @using (Html.BeginForm("Delete", "ChuyenDuLich", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@chuyen.Id" />
+                                        <input type="submit" value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa chuyến du lịch này?');" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div> <!--end::Col-->
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content-->

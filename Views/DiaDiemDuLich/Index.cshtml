@@ -1,0 +1,76 @@
+﻿@model IEnumerable<dulich.Models.DiaDiemDuLich>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0"> Quản lý Địa điểm du lịch</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Quản lý Địa điểm du lịch
+                    </li>
+                </ol>
+            </div>
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content Header--> <!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row mb-3">
+            <div class="col-12">
+                <a href="@Url.Action("Create", "DiaDiemDuLich")" class="btn btn-primary">Thêm Địa Điểm Du Lịch</a>
+            </div>
+        </div> <!--end::Row-->
+        <!--begin::Row-->
+        <div class="row">
+            <!--begin::Col-->
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Mô Tả</th>
+                            <th>Vị Trí</th>
+                            <th>Hình Ảnh</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tour in Model)
+                        {
+                            <tr>
+                                <td>@tour.Ten</td>
+                                <td>@tour.MoTa</td>
+                                <td>@tour.ViTri</td>
+                                <td>
+                                    <img src="@tour.UrlHinhAnh" alt="Hình Ảnh" style="max-width: 100px; max-height: 100px;" />
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "DiaDiemDuLich", new { id = tour.Id })" class="btn btn-warning">Sửa</a>
+                                    @using (Html.BeginForm("Delete", "DiaDiemDuLich", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@tour.Id" />
+                                        <input type="submit" value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa địa điểm này?');" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div> <!--end::Col-->
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content-->

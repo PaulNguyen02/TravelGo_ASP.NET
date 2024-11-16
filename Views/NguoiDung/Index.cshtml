@@ -1,0 +1,78 @@
+﻿@model IEnumerable<dulich.Models.NguoiDung>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0"> Quản lý Người Dùng</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Quản lý Người Dùng
+                    </li>
+                </ol>
+            </div>
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content Header--> <!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row mb-3">
+            <div class="col-12">
+                <a href="@Url.Action("Create", "NguoiDung")" class="btn btn-primary">Thêm Người Dùng</a>
+            </div>
+        </div> <!--end::Row-->
+        <!--begin::Row-->
+        <div class="row">
+            <!--begin::Col-->
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên Đăng Nhập</th>
+                            <th>Email</th>
+                            <th>Họ Tên</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Ngày Tạo</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var nguoiDung in Model)
+                        {
+                            <tr>
+                                <td>@nguoiDung.Id</td>
+                                <td>@nguoiDung.TenDangNhap</td>
+                                <td>@nguoiDung.Email</td>
+                                <td>@nguoiDung.HoTen</td>
+                                <td>@nguoiDung.SoDienThoai</td>
+                                <td>@nguoiDung.NgayTao</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "NguoiDung", new { id = nguoiDung.Id })" class="btn btn-warning">Sửa</a>
+                                    @using (Html.BeginForm("Delete", "NguoiDung", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@nguoiDung.Id" />
+                                        <input type="submit" value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div> <!--end::Col-->
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content-->

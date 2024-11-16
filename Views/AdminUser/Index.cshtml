@@ -1,0 +1,56 @@
+﻿@model IEnumerable<dulich.Models.Admin>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0"> Quản lý Tài khoản admin</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Quản lý Tài khoản admin
+                    </li>
+                </ol>
+            </div>
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content Header--> <!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <!--begin::Col-->
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên Đăng Nhập</th>
+                            <th>Ngày Tạo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var admin in Model)
+                        {
+                            <tr>
+                                <td>@admin.Id</td>
+                                <td>@admin.TenDangNhap</td>
+                                <td>@admin.NgayTao</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div> <!--end::Col-->
+        </div> <!--end::Row--> <!--begin::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content-->
