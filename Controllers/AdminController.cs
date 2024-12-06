@@ -8,15 +8,12 @@ namespace dulich.Controllers
     public class AdminController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+       
         // GET: Admin
         public ActionResult Index()
         {
             var userCount = db.NguoiDungs.Count();
             ViewBag.UserCount = userCount;
-
-            var congTyCount = db.CongTyDuLiches.Count();
-            ViewBag.CongTyCount = congTyCount;
 
             var diaDiemCount = db.DiaDiemDuLiches.Count();
             ViewBag.DiaDiemCount = diaDiemCount;

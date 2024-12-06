@@ -1,0 +1,66 @@
+﻿@model IEnumerable<dulich.Models.DatVeXe>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0"> Quản lý Đặt Vé Xe</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Quản lý Đặt Vé Xe
+                    </li>
+                </ol>
+            </div>
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content Header--> <!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <!--begin::Col-->
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Số Người</th>
+                            <th>Ngày Đặt</th>
+                            <th>Nhà Xe</th>
+                            <th>Tuyến Đường</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var datVeXe in Model)
+                        {
+                            <tr>
+                                <td>@datVeXe.Id</td>
+                                <td>@datVeXe.Ten</td>
+                                <td>@datVeXe.SoDienThoai</td>
+                                <td>@datVeXe.Email</td>
+                                <td>@datVeXe.SoNguoi</td>
+                                <td>@datVeXe.NgayDat.ToString("dd/MM/yyyy")</td>
+                                <td>@datVeXe.Nhaxe.TenNhaXe</td>
+                                <td>@datVeXe.TuyenDuong.DiemBatDau - @datVeXe.TuyenDuong.DiemKetThuc</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div> <!--end::Col-->
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content-->

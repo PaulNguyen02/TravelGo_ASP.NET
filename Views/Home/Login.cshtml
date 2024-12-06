@@ -1,0 +1,30 @@
+﻿@model IEnumerable<dulich.Models.NguoiDung>
+@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+<h2>Đăng nhập</h2>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(model => model.TenDangNhap)
+        @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MatKhau)
+        @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    </div>
+}
+
+@* Hiển thị lỗi nếu có *@
+@if (ViewData.ModelState[""].Errors.Any())
+{
+    <div class="alert alert-danger">
+        @ViewData.ModelState[""].Errors.FirstOrDefault().ErrorMessage
+    </div>
+}

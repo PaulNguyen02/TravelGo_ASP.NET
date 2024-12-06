@@ -16,7 +16,7 @@ namespace dulich.Controllers
         // GET: ChuyenDuLich
         public ActionResult Index()
         {
-            var chuyenDuLiches = db.ChuyenDuLiches.Include(c => c.DiaDiemDuLich).Include(c => c.CongTyDuLich);
+            var chuyenDuLiches = db.ChuyenDuLiches.Include(c => c.DiaDiemDuLich);
             return View(chuyenDuLiches.ToList());
         }
 
@@ -24,10 +24,8 @@ namespace dulich.Controllers
         public ActionResult Create()
         {
             var diaDiemDuLichList = db.DiaDiemDuLiches.ToList();
-            var congTyDuLichList = db.CongTyDuLiches.ToList();
 
             ViewBag.DiaDiemDuLich = diaDiemDuLichList;
-            ViewBag.CongTyDuLich = congTyDuLichList;
 
             return View();
         }
@@ -66,7 +64,6 @@ namespace dulich.Controllers
             }
 
             ViewBag.DiaDiemDuLichId = new SelectList(db.DiaDiemDuLiches, "Id", "Ten", chuyenDuLich.DiaDiemDuLichId);
-            ViewBag.CongTyDuLichId = new SelectList(db.CongTyDuLiches, "Id", "Ten", chuyenDuLich.CongTyDuLichId);
             return View(chuyenDuLich);
         }
 
@@ -83,10 +80,8 @@ namespace dulich.Controllers
                 return HttpNotFound();
             }
             var diaDiemDuLichList = db.DiaDiemDuLiches.ToList();
-            var congTyDuLichList = db.CongTyDuLiches.ToList();
 
             ViewBag.DiaDiemDuLich = diaDiemDuLichList;
-            ViewBag.CongTyDuLich = congTyDuLichList;
             return View(chuyenDuLich);
         }
 
@@ -122,7 +117,6 @@ namespace dulich.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.DiaDiemDuLichId = new SelectList(db.DiaDiemDuLiches, "Id", "Ten", chuyenDuLich.DiaDiemDuLichId);
-            ViewBag.CongTyDuLichId = new SelectList(db.CongTyDuLiches, "Id", "Ten", chuyenDuLich.CongTyDuLichId);
             return View(chuyenDuLich);
         }
 

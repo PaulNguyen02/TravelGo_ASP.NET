@@ -1,0 +1,70 @@
+﻿@model IEnumerable<dulich.Models.DatVeTau>
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!--beginApp Content Header-->
+<div class="app-content-header">
+    <!--beginContainer-->
+    <div class="container-fluid">
+        <!--beginRow-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0">Quản lý Đặt Vé Tàu</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Quản lý Đặt Vé Tàu</li>
+                </ol>
+            </div>
+        </div>
+        <!--endRow-->
+    </div>
+    <!--endContainer-->
+</div>
+<!--endApp Content Header-->
+<!--beginApp Content-->
+<div class="app-content">
+    <!--beginContainer-->
+    <div class="container-fluid">
+        <!--beginRow-->
+        <div class="row">
+            <!--beginCol-->
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Số Người</th>
+                            <th>Ngày Đặt</th>
+                            <th>Tàu</th>
+                            <th>Chuyến tàu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var datVeTau in Model)
+                        {
+                            <tr>
+                                <td>@datVeTau.Id</td>
+                                <td>@datVeTau.Ten</td>
+                                <td>@datVeTau.SoDienThoai</td>
+                                <td>@datVeTau.Email</td>
+                                <td>@datVeTau.SoNguoi</td>
+                                <td>@datVeTau.NgayDat.ToString("dd/MM/yyyy")</td>
+                                <td>@datVeTau.Tau.Tenhang</td>
+                                <td>@datVeTau.TuyenDuong.DiemBatDau - @datVeTau.TuyenDuong.DiemKetThuc</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!--endCol-->
+        </div>
+        <!--endRow-->
+    </div>
+    <!--endContainer-->
+</div>
+<!--endApp Content-->

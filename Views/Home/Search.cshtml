@@ -1,0 +1,110 @@
+﻿@model IEnumerable<dulich.Models.DiaDiemDuLich>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/footer.cshtml";
+}
+
+<section class="section_destination">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <div class="title_module_main">
+                    <h2><a href="san-pham-noi-bat.htm" title="Các điểm đến phổ biến">Các điểm đến phổ biến</a></h2>
+                    <p class="des">
+                        Với hơn 16 năm kinh nghiệm tổ chức và triển khai các tour trong và ngoài nước,
+                        chúng tôi cam kết đem lại cho khách hàng những hành trình tuyệt vời và ấn tượng nhất thông
+                        qua những dịch vụ chuyên nghiệp mà chúng tôi thực hiện như:
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrap_full_screen">
+        <div class="row">
+            @foreach (var des in Model)
+            {
+                <div class="item nopadding col-xl-4 col-lg-6 col-sm-6 col-xs-12">
+                    <div class="item_product_main big">
+
+
+                        <form action="https://template-travelgo.mysapo.net/cart/add" method="post"
+                              class="variants product-action" data-id="product-actions-11956125"
+                              enctype="multipart/form-data">
+                            <div class="product-thumbnail">
+                                <a class="image_thumb" href="da-lat-mong-mo-nha-trang-bien-xanh.htm"
+                                   title="@des.Ten">
+                                    <img class="lazyload"
+                                         src="https://bizweb.dktcdn.net/100/319/254/products/2.jpg?v=1529381089257"
+                                         alt="Đà Lạt Mộng Mơ - Nha Trang Biển Xanh">
+                                </a>
+                                <div class="position">
+                                    <span>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                                             class="svg-inline--fa fa-map-marker-alt fa-w-12">
+                                            <path fill="currentColor"
+                                                  d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+                                                  class=""></path>
+                                        </svg>
+                                        @des.Ten
+                                    </span>
+                                </div>
+                                <div class="views">
+                                    <a href="https://bizweb.dktcdn.net/thumb/1024x1024/100/319/254/products/2.jpg?v=1529381089257"
+                                       data-toggle="lightbox" data-gallery="example-gallery"
+                                       data-image="//bizweb.dktcdn.net/thumb/1024x1024/100/319/254/products/2.jpg?v=1529381089257"
+                                       data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/319/254/products/2.jpg?v=1529381089257"
+                                       title="Xem sản phẩm">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                             data-icon="search-plus" role="img" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 512 512" class="svg-inline--fa fa-search-plus fa-w-16">
+                                            <path fill="currentColor"
+                                                  d="M304 192v32c0 6.6-5.4 12-12 12h-56v56c0 6.6-5.4 12-12 12h-32c-6.6 0-12-5.4-12-12v-56h-56c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h56v-56c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v56h56c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"
+                                                  class=""></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">
+                                    <a href="da-lat-mong-mo-nha-trang-bien-xanh.htm"
+                                       title="Đà Lạt Mộng Mơ - Nha Trang Biển Xanh">
+                                        @des.Ten
+                                    </a>
+                                </h3>
+                                <div class="mapping">
+                                    <div class="tagdate">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="clock"
+                                             role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                             class="svg-inline--fa fa-clock fa-w-16">
+                                            <path fill="currentColor"
+                                                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"
+                                                  class=""></path>
+                                        </svg>
+                                    </div>
+                                    <div class="tagtransport">
+                                        <ul>
+                                            <li>
+                                                <img src="https://bizweb.dktcdn.net/100/319/254/themes/894747/assets/tag_icon_3.png?1676255871974"
+                                                     alt="icon" />
+                                            </li>
+                                            <li>
+                                                <img src="https://bizweb.dktcdn.net/100/319/254/themes/894747/assets/tag_icon_4.png?1676255871974"
+                                                     alt="icon" />
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</section>
+@Html.Partial("footer")

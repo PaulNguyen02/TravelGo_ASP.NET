@@ -1,0 +1,74 @@
+﻿@model IEnumerable<dulich.Models.Tau>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0"> Quản lý Tàu</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Quản lý Tàu
+                    </li>
+                </ol>
+            </div>
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content Header--> <!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row mb-3">
+            <div class="col-12">
+                <a href="@Url.Action("Create", "Tau")" class="btn btn-primary">Thêm Tàu</a>
+            </div>
+        </div> <!--end::Row-->
+        <!--begin::Row-->
+        <div class="row">
+            <!--begin::Col-->
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên Hãng</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tau in Model)
+                        {
+                            <tr>
+                                <td>@tau.Id</td>
+                                <td>@tau.Tenhang</td>
+                                <td>@tau.SoDienThoai</td>
+                                <td>@tau.Email</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Tau", new { id = tau.Id })" class="btn btn-warning">Sửa</a>
+                                    @using (Html.BeginForm("Delete", "Tau", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@tau.Id" />
+                                        <input type="submit" value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa tàu này?');" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div> <!--end::Col-->
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content-->
